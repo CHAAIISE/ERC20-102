@@ -1,66 +1,29 @@
-## Foundry
+# ERC20-102
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Workshop [ERC20 102](https://github.com/Elli610/Blockchain-101/tree/main/workshops/solidity/erc20-102) fait avec Foundry sur Sepolia.
 
-Foundry consists of:
+## Contrats
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `src/ExerciseSolution.sol` : claim les tokens du ClaimableToken pour l'appelant (`claimTokensOnBehalf`), garde les tokens en custody par adresse, `depositTokens` avec `transferFrom` et `withdrawTokens`.
+- `src/ExerciseSolutionToken.sol` : ERC20 mintable (EST), seul `ExerciseSolution` est minter. Il représente les tokens en custody : mint au claim et au dépôt, `transferFrom` puis burn au retrait.
+- `src/IEvaluator.sol` et `src/IERC20Claimable.sol` : interfaces des contrats du prof.
 
-## Documentation
+Sur Sepolia l'evaluator déployé utilise `submitExercice`, `exerciceProgression`, `ex4_approvedExerciceSolution` et `ex5_revokedExerciceSolution` (avec un c), pas les noms du README du workshop.
 
-https://book.getfoundry.sh/
+Pour l'ex9, l'evaluator ne fait pas d'approve sur ExerciseSolutionToken avant d'appeler `withdrawTokens`, donc le token laisse le minter faire `transferFrom` sans allowance.
 
-## Usage
+## Lancer
 
-### Build
+Mettre `SEPOLIA_RPC_URL` dans `.env` (voir `.env.example`).
 
-```shell
-$ forge build
+```
+forge build
+forge test
 ```
 
-### Test
+`forge test` fait tous les exercices sur un fork de Sepolia avec une adresse de test.
 
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Contrats du prof (Sepolia) :
+- TDToken : `0xeaD7680f5Bdb0aAa450399E8F49d4Efb9040Da08`
+- ClaimableToken : `0xD829b447AbABDb689C1F6DC81CCe3d29b37c5992`
+- Evaluator : `0x822aF04084720Ade89E34e316c169435bBA9C886`
