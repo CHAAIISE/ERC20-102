@@ -23,6 +23,14 @@ forge test
 
 `forge test` fait tous les exercices sur un fork de Sepolia avec une adresse de test.
 
+## Déployé sur Sepolia
+
+Les 10 exercices sont validés (`exerciceProgression` 0 à 9 à true) pour 20 points de TD-ERC20-102.
+
+- ExerciseSolution : `0x518B5A5A7c36c4077eD3CC7B9D8528600c4aDc3e`
+- ExerciseSolutionToken : `0x388097d80345d969C2F806c524b679d4bDb716FF`
+
+
 Contrats du prof (Sepolia) :
 - TDToken : `0xeaD7680f5Bdb0aAa450399E8F49d4Efb9040Da08`
 - ClaimableToken : `0xD829b447AbABDb689C1F6DC81CCe3d29b37c5992`
